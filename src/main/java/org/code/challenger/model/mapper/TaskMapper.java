@@ -1,7 +1,7 @@
-package org.code.challenger.dto.mapper;
+package org.code.challenger.model.mapper;
 
 import org.code.challenger.domain.Task;
-import org.code.challenger.dto.TaskDto;
+import org.code.challenger.model.dto.TaskDto;
 
 import java.util.ArrayList;
 import java.util.List;

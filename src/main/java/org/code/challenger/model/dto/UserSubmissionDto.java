@@ -1,4 +1,4 @@
-package org.code.challenger.dto;
+package org.code.challenger.model.dto;
 
 import lombok.Data;
 
@@ -9,5 +9,5 @@ public class UserSubmissionDto {
     private String input;
     private boolean success;
     private String resultMessage;
-    private TaskDto task;
+    private long taskId;
 }

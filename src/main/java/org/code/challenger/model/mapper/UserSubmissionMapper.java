@@ -1,8 +1,7 @@
-package org.code.challenger.dto.mapper;
+package org.code.challenger.model.mapper;
 
 import org.code.challenger.domain.UserSubmission;
-import org.code.challenger.dto.TaskDto;
-import org.code.challenger.dto.UserSubmissionDto;
+import org.code.challenger.model.dto.UserSubmissionDto;
 
 public class UserSubmissionMapper {
     public static UserSubmissionDto toDto(UserSubmission userSubmission) {
@@ -12,9 +11,7 @@ public class UserSubmissionMapper {
         userSubmissionDto.setInput(userSubmission.getInput());
         userSubmissionDto.setSuccess(userSubmission.isSuccess());
         userSubmissionDto.setResultMessage(userSubmission.getResultMessage());
-
-        TaskDto taskDto = TaskMapper.toDto(userSubmission.getTask());
-        userSubmissionDto.setTask(taskDto);
+        userSubmissionDto.setTaskId(userSubmission.getTask().getId());
 
         return userSubmissionDto;
     }

@@ -1,4 +1,4 @@
-package org.code.challenger.dto;
+package org.code.challenger.model.dto;
 
 import lombok.Data;
 

@@ -3,6 +3,7 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+    defer-datasource-initialization: true
   datasource:
     url: jdbc:h2:mem:code-challenger-db
     driverClassName: org.h2.Driver
@@ -11,4 +12,14 @@ spring:
   h2:
     console:
       enabled: true
+logging:
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+  level:
+    root: INFO
+jdoodle:
+  client:
+    id: fbf133bb2c2807db84a1632976a5cb2e
+    secret: 9cea1d2064f8528cc64d33e0b57e11cab5652651dbe8328b4e4f5b65076b03ac
+    language: java
 
