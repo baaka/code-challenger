@@ -9,6 +9,16 @@ public class HomeController {
 
     @GetMapping
     public ModelAndView home() {
-        return new ModelAndView("redirect:" + "app/index.html");
+        return new ModelAndView("redirect:app/index.html");
+    }
+
+    @GetMapping("/app/challenge")
+    public ModelAndView challenge() {
+        return new ModelAndView("forward:index.html");
+    }
+
+    @GetMapping("/app/top-users")
+    public ModelAndView topUsers() {
+        return new ModelAndView("forward:index.html");
     }
 }
