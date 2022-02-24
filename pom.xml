@@ -20,6 +20,7 @@
 		<yarn.version>v1.22.4</yarn.version>
 		<client.app.src.dir>${project.basedir}/src/main/app-ui</client.app.src.dir>
 		<frontend-maven-plugin.version>1.7.6</frontend-maven-plugin.version>
+		<db.data.file>${project.basedir}/data</db.data.file>
 	</properties>
 
 	<developers>
@@ -157,6 +158,22 @@
 							<resources>
 								<resource>
 									<directory>${client.app.src.dir}/build</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>db-file</id>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<phase>prepare-package</phase>
+						<configuration>
+							<outputDirectory>${basedir}/target/data</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${db.data.file}</directory>
 									<filtering>false</filtering>
 								</resource>
 							</resources>

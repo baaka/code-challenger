@@ -12,6 +12,11 @@ For building and running the application you need:
 - [Maven 3](https://maven.apache.org)
 
 ## Running the application locally
+First, build project with following maven command:
+
+```shell
+mvn spring-boot:run
+```
 
 There are several ways to run the application on your local machine. One way is to execute the `main` method in
 the `org.code.challenger.CodeChallengerApplication` class from your IDE.

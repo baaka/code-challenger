@@ -43,9 +43,15 @@ const TaskContainer = ({ loading, setLoading }) => {
     submitSolution(solution)
       .then((res) => {
         setSubmissionResult(res.data);
-        enqueueSnackbar("Solution is succesfully submitted!", {
-          variant: "success",
-        });
+        if (res.data.success) {
+          enqueueSnackbar("Solution is succesfully submitted!", {
+            variant: "success",
+          });
+        } else {
+          enqueueSnackbar("Invalid Submission!", {
+            variant: "error",
+          });
+        }
       })
       .catch((err) =>
         enqueueSnackbar(err.response.data, {

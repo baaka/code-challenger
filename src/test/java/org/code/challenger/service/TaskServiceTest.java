@@ -13,7 +13,7 @@ public class TaskServiceTest {
 
     @Test
     public void getTasksTest() {
-        Assertions.assertEquals(1, taskService.getTasks().size());
+        Assertions.assertEquals(3, taskService.getTasks().size());
     }
 
 }

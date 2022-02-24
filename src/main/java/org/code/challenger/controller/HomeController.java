@@ -12,8 +12,8 @@ public class HomeController {
         return new ModelAndView("redirect:app/index.html");
     }
 
-    @GetMapping("/app/challenge")
-    public ModelAndView challenge() {
+    @GetMapping("/app/task")
+    public ModelAndView task() {
         return new ModelAndView("forward:index.html");
     }
 
