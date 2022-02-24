@@ -82,6 +82,10 @@ public class UserSubmissionService {
         if (userName == null || userName.trim().isEmpty()) {
             throw new AppException(AppConstants.EXCEPTION_EMPTY_USERNAME);
         }
+
+        if (userSubmissionRequestDto.getTaskId() <= 0) {
+            throw new AppException(AppConstants.EXCEPTION_EMPTY_TASK);
+        }
     }
 
 }

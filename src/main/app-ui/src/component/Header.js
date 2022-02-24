@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { withRouter } from "react-router-dom";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -13,9 +14,13 @@ const useStyles = makeStyles(() => ({
   opened: {
     color: "red",
   },
+  loading: {
+    color: "#F0F8FF",
+    marginRight: 20,
+  },
 }));
 
-const Header = ({ title, menuItems, history }) => {
+const Header = ({ title, menuItems, history, isLoading }) => {
   const classes = useStyles();
 
   const redirectRo = (routeName) => {
@@ -44,9 +49,13 @@ const Header = ({ title, menuItems, history }) => {
       <CssBaseline />
       <AppBar>
         <Toolbar>
+          {isLoading && (
+            <CircularProgress className={classes.loading} disableShrink />
+          )}
           <Typography variant="h6" className={classes.title}>
             {title}
           </Typography>
+
           {menuItems.map((menuItem, index) =>
             getMenuButton(menuItem.title, menuItem.path, `menuItem_${index}`)
           )}

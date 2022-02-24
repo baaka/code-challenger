@@ -9,6 +9,8 @@ import Header from "./component/Header";
 import TaskContainer from "./container/TaskContainer";
 import TopSubmittersContainer from "./container/TopSubmittersContainer";
 import { appRoute } from "./util/appUtil";
+import SnackBar from "./component/common/SnackBar";
+import { useState } from "react";
 
 const menuItems = [
   { title: "Tasks", path: appRoute.task },
@@ -16,20 +18,38 @@ const menuItems = [
 ];
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <div style={{ padding: 10 }}>
       <Router>
-        <Header title="Code Challenger" menuItems={menuItems} />
-        <Container>
-          <Switch>
-            <Route path={appRoute.task} render={() => <TaskContainer />} />
-            <Route
-              path={appRoute.topUsers}
-              render={() => <TopSubmittersContainer />}
-            />
-            <Redirect to={appRoute.task} />
-          </Switch>
-        </Container>
+        <Header
+          title="Code Challenger"
+          menuItems={menuItems}
+          isLoading={loading}
+        />
+        <SnackBar>
+          <Container>
+            <Switch>
+              <Route
+                path={appRoute.task}
+                render={() => (
+                  <TaskContainer loading={loading} setLoading={setLoading} />
+                )}
+              />
+              <Route
+                path={appRoute.topUsers}
+                render={() => (
+                  <TopSubmittersContainer
+                    loading={loading}
+                    setLoading={setLoading}
+                  />
+                )}
+              />
+              <Redirect to={appRoute.task} />
+            </Switch>
+          </Container>
+        </SnackBar>
       </Router>
     </div>
   );

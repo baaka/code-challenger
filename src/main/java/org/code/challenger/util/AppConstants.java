@@ -8,5 +8,6 @@ public interface AppConstants {
     String EXCEPTION_EMPTY_USERNAME = "Username is not provided!";
     String EXTERNAL_SERVICE_EXCEPTION = "Something went wrong, please contact administrator.";
     String EXCEPTION_GENERAL_ERROR = "General error, please contact administrator!";
+    String EXCEPTION_EMPTY_TASK = "Task is not provided!";
 
 }

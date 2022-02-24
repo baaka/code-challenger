@@ -23,7 +23,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Task = ({ tasks, onSubmit, submissionResult, onTaskChange }) => {
+const Task = ({
+  tasks,
+  onSubmit,
+  submissionResult,
+  onTaskChange,
+  isLoading,
+}) => {
   const classes = useStyles();
 
   const [solution, setSolution] = useState({});
@@ -123,7 +129,7 @@ const Task = ({ tasks, onSubmit, submissionResult, onTaskChange }) => {
                 variant="contained"
                 color="primary"
                 onClick={() => onSubmit(solution)}
-                disabled={submissionResult.success}
+                disabled={submissionResult.success || isLoading}
               >
                 Submit
               </Button>

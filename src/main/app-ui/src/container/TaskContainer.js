@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSnackbar } from "notistack";
 import Task from "../component/Task";
 import { loadTasks } from "../api/service/taskService";
 import { submitSolution } from "../api/service/submissionService";
@@ -8,14 +9,25 @@ const emptyResultObject = {
   success: false,
 };
 
-const TaskContainer = () => {
+const TaskContainer = ({ loading, setLoading }) => {
   const [tasks, setTasks] = useState([]);
   const [submissionResult, setSubmissionResult] = useState(emptyResultObject);
+  const { enqueueSnackbar } = useSnackbar();
 
   const initTasks = () => {
-    loadTasks().then((res) => {
-      setTasks(res.data);
-    });
+    setLoading(true);
+    loadTasks()
+      .then((res) => {
+        setTasks(res.data);
+      })
+      .catch((err) =>
+        enqueueSnackbar("Data load failure", {
+          variant: "error",
+        })
+      )
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const onTaskChange = () => {
@@ -27,12 +39,22 @@ const TaskContainer = () => {
   }, []);
 
   const onSubmit = (solution) => {
-    // TODO validate
+    setLoading(true);
     submitSolution(solution)
       .then((res) => {
         setSubmissionResult(res.data);
+        enqueueSnackbar("Solution is succesfully submitted!", {
+          variant: "success",
+        });
       })
-      .catch((err) => console.log("error caught " + err));
+      .catch((err) =>
+        enqueueSnackbar(err.response.data, {
+          variant: "error",
+        })
+      )
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -41,6 +63,7 @@ const TaskContainer = () => {
       onSubmit={onSubmit}
       submissionResult={submissionResult}
       onTaskChange={onTaskChange}
+      isLoading={loading}
     />
   );
 };
