@@ -15,7 +15,7 @@ For building and running the application you need:
 First, build project with following maven command:
 
 ```shell
-mvn spring-boot:run
+mvn clean install
 ```
 
 There are several ways to run the application on your local machine. One way is to execute the `main` method in
